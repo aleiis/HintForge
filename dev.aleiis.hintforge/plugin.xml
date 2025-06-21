@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="dev.aleiis.hintforge.command.generatecodecompletion"
+            name="Generate Code Completion">
+      </command>
+      <command
+            id="dev.aleiis.hintforge.command.suggestidentifiers"
+            name="Suggest Identifiers">
+      </command>
+      <command
+            id="dev.aleiis.hintforge.command.explaincode"
+            name="Explain Code">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="dev.aleiis.hintforge.handler.CodeCompletionHandler"
+            commandId="dev.aleiis.hintforge.command.generatecodecompletion">
+      </handler>
+      <handler
+            class="dev.aleiis.hintforge.handler.SuggestIdentifiersHandler"
+            commandId="dev.aleiis.hintforge.command.suggestidentifiers">
+      </handler>
+      <handler
+            class="dev.aleiis.hintforge.handler.ExplainCodeHandler"
+            commandId="dev.aleiis.hintforge.command.explaincode">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext">
+         <menu
+               icon="icons/sample.png"
+               label="HintForge"
+               tooltip="AI-powered coding assistance">
+            <command
+                  commandId="dev.aleiis.hintforge.command.generatecodecompletion"
+                  label="Generate Code Completion"
+                  style="push">
+            </command>
+            <command
+                  commandId="dev.aleiis.hintforge.command.suggestidentifiers"
+                  label="Suggest Identifiers"
+                  style="push">
+            </command>
+            <command
+                  commandId="dev.aleiis.hintforge.command.explaincode"
+                  label="Explain Code"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            name="dev.aleiis.hintforge.annotations.codesuggestion">
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="dev.aleiis.hintforge.annotations.codesuggestion"
+            colorPreferenceKey="CodeSuggestionColor"
+            colorPreferenceValue="192,192,255"
+            contributesToHeader="true"
+            highlightPreferenceKey="CodeSuggestionHighlight"
+            highlightPreferenceValue="false"
+            includeOnPreferencePage="true"
+            label="Code Suggestion"
+            overviewRulerPreferenceKey="CodeSuggestionOverview"
+            overviewRulerPreferenceValue="false"
+            presentationLayer="5"
+            symbolicIcon="task"
+            textPreferenceKey="CodeSuggestionText"
+            textPreferenceValue="true"
+            textStylePreferenceKey="CodeSuggestionStyle"
+            textStylePreferenceValue="DASHED_BOX"
+            verticalRulerPreferenceKey="CodeSuggestionVertical"
+            verticalRulerPreferenceValue="true">
+      </specification>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="dev.aleiis.hintforge.preference.HintForgePreferencePage"
+            id="dev.aleiis.hintforge.preferencepage"
+            name="HintForge ">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="dev.aleiis.hintforge.preference.HintForgePreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="dev.aleiis.hintforge.command.generatecodecompletion"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+1">
+      </key>
+      <key
+            commandId="dev.aleiis.hintforge.command.suggestidentifiers"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+2">
+      </key>
+      <key
+            commandId="dev.aleiis.hintforge.command.explaincode"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M3+3">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="dev.aleiis.hintforge.view.hintforgecategory"
+            class="dev.aleiis.hintforge.view.CodeExplanationView"
+            id="dev.aleiis.hintforge.view.codeexplanation"
+            name="Code Explanation"
+            restorable="true">
+      </view>
+      <category
+            id="dev.aleiis.hintforge.view.hintforgecategory"
+            name="HintForge">
+      </category>
+   </extension>
+
+</plugin>
